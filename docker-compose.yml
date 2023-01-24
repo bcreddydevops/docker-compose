@@ -1,0 +1,21 @@
+version: '2'
+services:
+  python:
+    image: chinnareddaiah/python-redis:1.0
+    container_name: python
+    depends_on:
+      - redis
+    environment:
+      - "redis_host=redis"
+    ports:
+     - "8080:5000"
+    networks:
+      - bcreddy-app
+  redis:
+    container_name: redis
+    image: "redis"
+    networks:
+      - bcreddy-app
+networks:
+  bcreddy-app:
+    driver: bridge
